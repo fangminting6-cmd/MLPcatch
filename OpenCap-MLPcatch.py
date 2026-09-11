@@ -393,22 +393,20 @@ def run_analysis(sid, keyword, model_obj):
         # =========================================================
         # 💡 新增：在这里插入 3D 动作姿态重构视图
         # =========================================================
-        st.subheader("🟢 动作捕捉数字孪生回放")
-        
-        # 调整了分栏比例，给 3D 画面留出更大空间
-        col_3d, col_info = st.columns([2.5, 1]) 
-        
-        with col_3d:
-            # 💡 这里直接使用传入函数的 sid (即 Session ID)
-            opencap_url = f"https://app.opencap.ai/session/{sid}"
-            
-            # 使用 iframe 渲染 OpenCap 官方 3D 界面
-            components.iframe(
-                src=opencap_url, 
-                width=800, 
-                height=550, 
-                scrolling=True
-            )
+        opencap_url = f"https://app.opencap.ai/session/{sid}"
+
+        st.markdown(
+            f"""
+            <div style="width:100%; aspect-ratio:800 / 550; margin:0; padding:0; overflow:hidden;">
+                <iframe
+                    src="{opencap_url}"
+                    style="width:100%; height:100%; border:0; display:block;"
+                    scrolling="yes">
+                </iframe>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
             
         # =========================================================
 
